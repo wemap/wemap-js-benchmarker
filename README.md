@@ -20,5 +20,5 @@ Add new suite into `suites/_index.js` collection
 
 (re)start NodeJS benchmark server
 ```bash
-npm run start
+npm start
 ```
