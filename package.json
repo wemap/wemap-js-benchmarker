@@ -1,0 +1,23 @@
+{
+  "name": "wemap-benchmarker",
+  "version": "0.1.0",
+  "description": "Simple JS/HTML Benchmarker",
+  "repository": "https://github.com/wemap/wemap-benchmarker",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "serve": "node serve.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "benchmark": "2.1.2"
+  },
+  "devDependencies": {
+    "body-parser": "1.15.2",
+    "compression": "1.6.2",
+    "dotenv": "2.0.0",
+    "express": "4.14.0",
+    "express-livereload": "0.0.24"
+  }
+}
