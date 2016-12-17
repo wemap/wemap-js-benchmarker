@@ -1,41 +1,18 @@
-/* eslint no-console: 0 */
-/* global require */
+/* global module */
 (function() {
 
     'use strict';
 
-    var Benchmark = require('benchmark'),
-        suite = new Benchmark.Suite('%%suite_name%%', {
-            'onStart': function() {
-                // called when the suite starts running
+    module.exports = {
+        name: '%%suite_name%%',
+        cases: {
+            '%%suite_case_name%%': function() {
+                // do something
             },
-            'onCycle': function(event) {
-                // called between running benchmarks
-                console.log(String(event.target));
-            },
-            'onAbort': function() {
-                // called when aborted
-            },
-            'onError': function() {
-                // called when a test errors
-            },
-
-            'onReset': function() {
-                // called when reset
-            },
-            'onComplete': function() {
-                // called when the suite completes running
-                var fastest = suite.filter('fastest').map('name');
-                console.log('Fastest is ' + fastest);
+            '%%suite_case_name_%%': function() {
+                // do something else
             }
-        });
-
-    suite.add('%%suite_case_name%%', function() {
-
-    });
-
-    suite.run({
-        'async': true
-    });
+        }
+    };
 
 }());
