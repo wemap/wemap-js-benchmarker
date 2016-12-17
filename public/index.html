@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Wemap Benchmarker Runner</title>
+  </head>
+  <script type="text/javascript"
+    src="browser-runner-bundle.js"></script>
+  <script type="text/javascript">
+    // <![CDATA[
+    window.run = require('browser-runner-bundle');
+    // ]]>
+  </script>
+  <body>
+    <div id="main">
+      <h1>
+        <span>Suites</span>
+      </h1>
+      <div class="suites">
+        <ul>
+          <li class="item">
+            <span>Create DOM Element</span>
+            <button class="single-run" data-suitename="create-dom-element">
+              <span>run</span>
+            </button>
+          </li>
+          <li class="item">
+            <span>String.indexof vs Regex.test</span>
+            <button class="single-run" data-suitename="string-indexof_vs_regextest">
+              <span>run</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript"
+      src="main.js"></script>
+  </body>
+</html>

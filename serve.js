@@ -3,8 +3,7 @@
 
     'use strict';
 
-    // touch .env
-    // npm i -D dotenv express express-livereload compression body-parser
+    // local current environment configuration file
     require('dotenv').load();
 
     var port = process.env.PORT || 9080,
@@ -16,7 +15,7 @@
         compression = require('compression'),
         server = express(),
         paths = {
-            www: path.join(__dirname, 'dist')
+            www: path.join(__dirname, 'public')
         };
 
     // gzip compression
@@ -26,13 +25,17 @@
     // Express server is used to serve static ressouces
     server.use('/', express.static(paths.www));
 
-    server.listen(port, function() {
-        if (!debug) {
+    // build benchmark.js HTML runner with browserify from sources
+    require('./src/build-browser-runner').build(function __onBuildComplete__ () {
+        server.listen(port, function() {
+            if (!debug) {
+                return true;
+            }
+            var msg = 'HTML Runner Built!\n';
+            msg += 'Application now running under http://localhost:' + port + '\n';
+            process.stdout.write(msg);
             return true;
-        }
-        var msg = 'Application now running under http://localhost:' + port;
-        process.stdout.write(msg);
-        return true;
+        });
     });
 
 }());

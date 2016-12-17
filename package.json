@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "description": "Simple JS/HTML Benchmarker",
   "repository": "https://github.com/wemap/wemap-benchmarker",
-  "main": "index.js",
+  "main": "./src/runner.js",
   "scripts": {
-    "start": "node index.js",
-    "serve": "node serve.js"
+    "start": "node serve.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "benchmark": "2.1.2"
+    "benchmark": "2.1.2",
+    "browserify": "13.1.1",
+    "jsdom": "9.8.3"
   },
   "devDependencies": {
     "body-parser": "1.15.2",
