@@ -7,20 +7,18 @@ npm install -g kiss-cli
 npm install
 ```
 
-## Create a single suite
+## DOM Manipulation benchmark
 
-```kiss
+### Single suite
+
+Create a new test suite in `suites` folder
+```bash
 kiss suites/<my_suite_name>.suite
 ```
 
-## Run a single benchmark
+Add new suite into `suites/_index.js` collection
 
-```kiss
-node suites/<my_suite_name>
-```
-
-## Run all benchmarks
-
-```kiss
-npm start
+(re)start NodeJS benchmark server
+```bash
+npm run start
 ```
