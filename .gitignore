@@ -129,3 +129,4 @@ Temporary Items
 ### Project ###
 
 .env
+public/browser-runner-bundle.js
