@@ -69,6 +69,7 @@
                 item.parentElement.classList.remove('running');
                 item.querySelector('span').innerText = 'Run';
             });
+        IS_RUNNING = false;
     }
 
     /**
