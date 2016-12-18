@@ -18,25 +18,16 @@
                 marker.appendChild(plusSign);
                 parent.appendChild(marker);
             },
-            'innerHTML.join()': function() {
+            'createElement + setAttribute': function() {
                 var parent = document.createElement('div'),
                     marker = document.createElement('div'),
-                    childs = [
-                        '<img class="multipoint_icon"/>',
-                        '<span class="multipoint_plus_sign"></span>'
-                    ];
-                marker.className = 'multipoint-marker';
-                marker.innerHTML = childs.join('');
-                parent.appendChild(marker);
-            },
-            'innerHTML.join() 2': function() {
-                var childs = [],
-                    parent = document.createElement('div'),
-                    marker = document.createElement('div');
-                childs.push('<img class="multipoint_icon"/>');
-                childs.push('<span class="multipoint_plus_sign"></span>');
-                marker.className = 'multipoint-marker';
-                marker.innerHTML = childs.join('');
+                    icon = document.createElement('img'),
+                    plusSign = document.createElement('span');
+                marker.setAttribute('class', 'multipoint-marker');
+                icon.setAttribute('class', 'multipoint_icon');
+                plusSign.setAttribute('class', 'multipoint_plus_sign');
+                marker.appendChild(icon);
+                marker.appendChild(plusSign);
                 parent.appendChild(marker);
             },
             'createDocumentFragment': function() {
@@ -53,19 +44,13 @@
                 marker.appendChild(plusSign);
                 parent.appendChild(fragment);
             },
-            'createDocumentFragment 2': function() {
+            'innerHTML': function() {
                 var parent = document.createElement('div'),
-                    marker = document.createElement('div'),
-                    fragment = document.createDocumentFragment(),
-                    icon = document.createElement('img'),
-                    plusSign = document.createElement('span');
-                marker.className += ' multipoint-marker';
-                icon.className += ' multipoint_icon';
-                plusSign.className += ' multipoint_plus_sign ';
-                fragment.appendChild(icon);
-                fragment.appendChild(plusSign);
-                marker.appendChild(fragment);
-                parent.appendChild(fragment);
+                    elts = '<div class="multipoint-marker">';
+                elts += '<img class="multipoint_icon"/>';
+                elts += '<span class="multipoint_plus_sign"></span>';
+                elts += '</div>';
+                parent.innerHTML = elts;
             }
         }
     };

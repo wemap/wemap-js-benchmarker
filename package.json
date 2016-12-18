@@ -1,11 +1,11 @@
 {
   "name": "wemap-benchmarker",
   "version": "0.1.0",
-  "description": "Simple JS/HTML Benchmarker",
+  "description": "Wemap's JS/HTML benchmarker",
   "repository": "https://github.com/wemap/wemap-benchmarker",
-  "main": "./src/runner.js",
+  "main": "./src/js/runner.js",
   "scripts": {
-    "start": "node serve.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "MIT",

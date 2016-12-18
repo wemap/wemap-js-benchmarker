@@ -1,13 +1,28 @@
+/**
+ *
+ *  __          ________ __  __          _____
+ *  \ \        / /  ____|  \/  |   /\   |  __ \
+ *   \ \  /\  / /| |__  | \  / |  /  \  | |__) |
+ *    \ \/  \/ / |  __| | |\/| | / /\ \ |  ___/
+ *     \  /\  /  | |____| |  | |/ ____ \| |
+ *      \/  \/   |______|_|  |_/_/    \_\_|
+ *
+ *
+ * USAGE: @see README.md
+ *
+ */
+/* eslint no-console: 0 */
 /* global process, require, __dirname, console */
 (function() {
 
     'use strict';
 
-    // local current environment configuration file
-    require('dotenv').load();
+    // load local current environment configuration file if exists
+    require('dotenv').load({
+        silent: true
+    });
 
     var port = process.env.PORT || 9080,
-        debug = process.env.DEBUG || false,
         // requires
         path = require('path'),
         express = require('express'),
@@ -25,14 +40,11 @@
     // Express server is used to serve static ressouces
     server.use('/', express.static(paths.www));
 
-    // build benchmark.js HTML runner with browserify from sources
-    require('./src/build-browser-runner').build(function __onBuildComplete__ () {
+    require('./src/js/build-browser-runner').build(function __onBuildComplete__ () {
+        // build benchmark.js HTML runner with browserify from sources
         server.listen(port, function() {
-            if (!debug) {
-                return true;
-            }
             var msg = 'HTML Runner Built!\n';
-            msg += 'Application now running under http://localhost:' + port + '\n';
+            msg += 'Open your browser at http://localhost:' + port + '\n';
             process.stdout.write(msg);
             return true;
         });
