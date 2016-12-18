@@ -1,13 +1,23 @@
-/* eslint no-console: 0 */
+/* eslint no-console: 0, no-undefined: 0 */
 /* global module */
 (function() {
 
     'use strict';
 
+    function __output (msg) {
+        var isdocument = window && (window !== undefined || window !== 'undefined');
+        if (isdocument) {
+            //
+        }
+        console.log(msg);
+        return false;
+    }
+
     module.exports = {
-        'onStart': function(event) {
+        'onStart': function() {
             // called when the suite starts running
-            console.log(String(event.target));
+            var msg = 'Start suite: ' + this.name;
+            __output(msg);
         },
         'onCycle': function(event) {
             // called between running benchmarks
