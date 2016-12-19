@@ -1,11 +1,15 @@
 <div id="suites" class="col-left">
   <ul>
-    {{#each suitesobj}}
+    {{#each suites}}
     <li class="item" data-suitename="{{id}}">
-      <span class="title">{{name}}</span>
-      <button class="single-run">
-        <span>run</span>
-      </button>
+      <div class="row-top">
+        <span class="title">{{name}}</span>
+        <button class="single-run">
+          <span>run</span>
+        </button>
+      </div>
+      <div class="row-bottom">
+      </div>
     </li>
     {{/each}}
   </ul>

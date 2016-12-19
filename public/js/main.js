@@ -98,6 +98,17 @@
         // add click listener to each button with CSS class'single-run'
         document.querySelectorAll('.single-run')
             .forEach(function(item) {
+                var str = '',
+                    elt = null,
+                    parent = item.parentElement,
+                    name = parent.dataset.suitename,
+                    stored = localStorage.getItem(name);
+                if (stored) {
+                    elt = item.querySelector('.row-bottom');
+                    str = '<em>' + stored.udpated + '</em>';
+                    str += '<em>' + stored.fastest + '</em>';
+                    elt.innerHTML = str;
+                }
                 item.addEventListener('click', __onButtonClick);
             });
     }

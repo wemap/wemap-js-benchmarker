@@ -17,12 +17,25 @@
 
     'use strict';
 
+    function __parseSuiteObjects (objects) {
+        var loopItems = [];
+        // load suites object to configure loop inside handlebars template
+        Object.keys(objects).map(function(key) {
+            loopItems.push({
+                id: key,
+                name: objects[key].name
+            });
+        });
+        return loopItems;
+    }
+
     // load local current environment configuration file if exists
     require('dotenv').load({
         silent: true
     });
 
-    var port = process.env.PORT || 9080,
+    var suites = false,
+        port = process.env.PORT || 9080,
         // requires
         path = require('path'),
         express = require('express'),
@@ -38,6 +51,8 @@
     server.use(compression());
     // Parsing application/json
     server.use(bodyParser.json());
+    // set views folder
+    server.set('views', path.resolve(__dirname, 'src/views'));
     // handlebars views
     // Express server is used to serve static ressouces
     server.engine('.hbs', exphbs({
@@ -47,17 +62,11 @@
         partialsDir: path.resolve(__dirname, 'src/views/partials')
     }));
     server.set('view engine', '.hbs');
-    server.set('views', path.resolve(__dirname, 'src/views'));
 
+    suites = require(path.resolve(__dirname, 'suites/_index'));
     server.get('/', function(req, res) {
         res.render('suites', {
-            suitesobj: [{
-                id: 'create-dom-element',
-                name: 'Create DOM Element'
-            }, {
-                id: 'string-indexof_vs_regextest',
-                name: 'String.indexof vs Regex.test'
-            }]
+            suites: __parseSuiteObjects(suites)
         });
     });
 
