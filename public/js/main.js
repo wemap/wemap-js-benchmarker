@@ -47,7 +47,7 @@
      * @return {String}     Benchmark suite's name from dataset value
      */
     function __activeButton (item) {
-        var parent = item.parentElement;
+        var parent = item.parentElement.parentElement;
         parent.classList.remove('disabled');
         parent.classList.add('running');
         item.querySelector('span').innerText = '...';
@@ -64,7 +64,7 @@
         __storeResults(this);
         document.querySelectorAll('.single-run')
             .forEach(function(item) {
-                parent = item.parentElement;
+                parent = item.parentElement.parentElement;
                 parent.classList.remove('disabled');
                 item.parentElement.classList.remove('running');
                 item.querySelector('span').innerText = 'Run';
@@ -100,14 +100,19 @@
             .forEach(function(item) {
                 var str = '',
                     elt = null,
-                    parent = item.parentElement,
+                    parent = item.parentElement.parentElement,
                     name = parent.dataset.suitename,
                     stored = localStorage.getItem(name);
-                if (stored) {
-                    elt = item.querySelector('.row-bottom');
-                    str = '<em>' + stored.udpated + '</em>';
-                    str += '<em>' + stored.fastest + '</em>';
-                    elt.innerHTML = str;
+                try {
+                    stored = JSON.parse(stored);
+                    if (stored) {
+                        elt = parent.querySelector('.row-bottom');
+                        str = '<em>' + stored.updated + '</em>';
+                        str += '&nbsp;<em>' + stored.fastest + '</em>';
+                        elt.innerHTML = str;
+                    }
+                } catch (err) {
+                    //
                 }
                 item.addEventListener('click', __onButtonClick);
             });

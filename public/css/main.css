@@ -87,10 +87,17 @@ ul, li {
 
 #suites .item {
   display: flex;
+  flex-direction: column;
+}
+
+#suites .item .row-top {
+  display: flex;
   line-height: 2.5em;
   flex-direction: row;
   justify-content: space-between;
 }
+
+#suites .item .row-bottom {}
 
 #suites .item .title {
   font-size: 14px;

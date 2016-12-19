@@ -19,11 +19,11 @@
     var parseSuite = require('./parse-suite'),
         suites = require('./../../suites/_index');
 
-    module.exports = function(filename, callback) {
-        if (!suites.hasOwnProperty(filename)) {
-            throw new Error('unable to find suite: ' + filename);
+    module.exports = function(suitename, callback) {
+        if (!suites.hasOwnProperty(suitename)) {
+            throw new Error('unable to find suite with name: ' + suitename);
         }
-        var suiteconfig = suites[filename],
+        var suiteconfig = suites[suitename],
             suite = parseSuite(suiteconfig);
         suite.on('complete', callback);
         suite.run();

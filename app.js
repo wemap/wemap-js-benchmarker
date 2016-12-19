@@ -63,10 +63,12 @@
     }));
     server.set('view engine', '.hbs');
 
-    suites = require(path.resolve(__dirname, 'suites/_index'));
     server.get('/', function(req, res) {
+        suites = require(path.resolve(__dirname, 'suites/_index'));
+        console.log('suites', suites);
+        suites = __parseSuiteObjects(suites);
         res.render('suites', {
-            suites: __parseSuiteObjects(suites)
+            suites: suites
         });
     });
 
