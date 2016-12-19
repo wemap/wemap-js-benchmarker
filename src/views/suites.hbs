@@ -1,16 +1,12 @@
 <div id="suites" class="col-left">
   <ul>
-    <li class="item" data-suitename="create-dom-element">
-      <span class="title">Create DOM Element</span>
+    {{#each suitesobj}}
+    <li class="item" data-suitename="{{id}}">
+      <span class="title">{{name}}</span>
       <button class="single-run">
         <span>run</span>
       </button>
     </li>
-    <li class="item" data-suitename="string-indexof_vs_regextest">
-      <span class="title">String.indexof vs Regex.test</span>
-      <button class="single-run">
-        <span>run</span>
-      </button>
-    </li>
+    {{/each}}
   </ul>
 </div>

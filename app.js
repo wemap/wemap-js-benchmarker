@@ -50,7 +50,15 @@
     server.set('views', path.resolve(__dirname, 'src/views'));
 
     server.get('/', function(req, res) {
-        res.render('suites');
+        res.render('suites', {
+            suitesobj: [{
+                id: 'create-dom-element',
+                name: 'Create DOM Element'
+            }, {
+                id: 'string-indexof_vs_regextest',
+                name: 'String.indexof vs Regex.test'
+            }]
+        });
     });
 
     server.use(express.static(paths.www));
