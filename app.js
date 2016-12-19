@@ -28,17 +28,32 @@
         express = require('express'),
         bodyParser = require('body-parser'),
         compression = require('compression'),
+        exphbs = require('express-handlebars'),
         server = express(),
         paths = {
-            www: path.join(__dirname, 'public')
+            www: path.resolve(__dirname, 'public')
         };
 
     // gzip compression
     server.use(compression());
     // Parsing application/json
     server.use(bodyParser.json());
+    // handlebars views
     // Express server is used to serve static ressouces
-    server.use('/', express.static(paths.www));
+    server.engine('.hbs', exphbs({
+        extname: '.hbs',
+        defaultLayout: 'index',
+        layoutsDir: path.resolve(__dirname, 'src/views/layouts'),
+        partialsDir: path.resolve(__dirname, 'src/views/partials')
+    }));
+    server.set('view engine', '.hbs');
+    server.set('views', path.resolve(__dirname, 'src/views'));
+
+    server.get('/', function(req, res) {
+        res.render('suites');
+    });
+
+    server.use(express.static(paths.www));
 
     require('./src/js/build-browser-runner').build(function __onBuildComplete__ () {
         // build benchmark.js HTML runner with browserify from sources
